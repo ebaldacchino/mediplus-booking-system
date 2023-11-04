@@ -10,13 +10,15 @@ import { Subtitle, Subtitle2 } from '../components/typography';
 import Link from 'next/link';
 import { Checkbox } from '../components/forms';
 import { format, parseISO } from 'date-fns';
-export const getServerSideProps = async ({ query: { id, date } }) => {
+
+export const getServerSideProps: GetServerSideProps = async ({ query: { id, date } }) => {
 	const doctor = data[id];
 	// confirm booking availability in fetch request
 	if (!doctor) return { notFound: true };
 	return { props: { doctor, date } };
 };
 import { ordinal } from '../lib/dates';
+import { GetServerSideProps } from 'next';
 
 const GraySubtitle2 = tw(Subtitle2)`text-gray-400`;
 const StyledFrame = tw(Frame)`min-w-full`;
@@ -35,7 +37,7 @@ const Confirmation = ({ doctor, date }) => {
 		' '
 	);
 	return (
-		<Layout>
+        <Layout>
 			<Navbar>
 				<Button danger textOnly>
 					Emergency
@@ -69,7 +71,7 @@ const Confirmation = ({ doctor, date }) => {
 					<GraySubtitle2>Address</GraySubtitle2>
 					<Subtitle>{doctor.address}</Subtitle>
 					<div tw='flex justify-end'>
-						<Link href='/' passHref>
+						<Link href='/' passHref legacyBehavior>
 							<LinkButton textOnly> Get Directions</LinkButton>
 						</Link>
 					</div>
@@ -78,7 +80,7 @@ const Confirmation = ({ doctor, date }) => {
 					Send me updates over Whatsapp
 				</Checkbox>
 				<footer tw='flex gap-2 pb-4 mt-auto'>
-					<Link href='/' passHref>
+					<Link href='/' passHref legacyBehavior>
 						<LinkButton tw='flex-1' secondary>
 							Cancel Appointment
 						</LinkButton>
@@ -87,7 +89,7 @@ const Confirmation = ({ doctor, date }) => {
 				</footer>
 			</Main>
 		</Layout>
-	);
+    );
 };
 
 export default Confirmation;

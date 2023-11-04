@@ -36,15 +36,15 @@ const prescriptions = [
 const Prescriptions = ({ user }) => {
 	// const { prescriptions } = user
 	return (
-		<Layout>
+        <Layout>
 			<Navbar sort search />
 			<Main>
 				<StyledSectionTitle>Your Prescriptions</StyledSectionTitle>
 				{prescriptions.map(
 					({ doctor, date, time, medicines, symptoms }, index) => {
 						return (
-							<Link key={index} href='/prescriptions/details'>
-								<a className='group'>
+                            (<Link key={index} href='/prescriptions/details' className='group'>
+
 									<Card link>
 										<CardTitle>{symptoms}</CardTitle>
 										<Subtitle gray>{doctor}</Subtitle>
@@ -67,15 +67,15 @@ const Prescriptions = ({ user }) => {
 											</Subtitle>
 										</div>
 									</Card>
-								</a>
-							</Link>
-						);
+
+                            </Link>)
+                        );
 					}
 				)}
 			</Main>
 			<Footer path={'/prescriptions'} />
 		</Layout>
-	);
+    );
 };
 
 export default Prescriptions;

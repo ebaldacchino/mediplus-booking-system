@@ -37,26 +37,24 @@ const ConfirmSection = ({ confirmBooking, closeModal }) => {
 		' '
 	);
 	const url = `/confirmation?id=${0}&date=${confirmBooking.toISOString()}`;
-	return (
-		<>
-			<CardTitle tw='font-normal mb-4'>
-				Are you sure you want to confirm booking?
-			</CardTitle>
-			<Subtitle2 tw='text-gray-500'>Selected date & time:</Subtitle2>
-			<Subtitle tw='font-bold'>
-				{ordinal(dd)} {mm}, {yy} {time}
-			</Subtitle>
-			<InfoContainer>Only two cancellations allowed</InfoContainer>
-			<ButtonContainer>
-				<Button secondary onClick={closeModal}>
-					Edit date & time
-				</Button>
-				<Link passHref href={url}>
-					<LinkButton>Confirm booking</LinkButton>
-				</Link>
-			</ButtonContainer>
-		</>
-	);
+	return <>
+        <CardTitle tw='font-normal mb-4'>
+            Are you sure you want to confirm booking?
+        </CardTitle>
+        <Subtitle2 tw='text-gray-500'>Selected date & time:</Subtitle2>
+        <Subtitle tw='font-bold'>
+            {ordinal(dd)} {mm}, {yy} {time}
+        </Subtitle>
+        <InfoContainer>Only two cancellations allowed</InfoContainer>
+        <ButtonContainer>
+            <Button secondary onClick={closeModal}>
+                Edit date & time
+            </Button>
+            <Link passHref href={url} legacyBehavior>
+                <LinkButton>Confirm booking</LinkButton>
+            </Link>
+        </ButtonContainer>
+    </>;
 };
 const ConfirmBooking = ({ formatTime, setConfirmBooking, confirmBooking }) => {
 	const [symptoms, setSymptoms] = useState('');

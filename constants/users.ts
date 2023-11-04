@@ -9,7 +9,27 @@ const getDate = () => {
 	return new Date(now - oneDay * days + time).toISOString();
 };
 
-const users = [
+interface IUser {
+	id: number;
+	email: string;
+	password: string;
+	prescriptions: {
+		infection: string;
+		doctorId: number;
+		date: string;
+		medicines: {
+			name: string;
+			length: string;
+			doses: {
+				morning: number;
+				afternoon: number;
+				dinner: number;
+			};
+		}[];
+	}[];
+}
+
+const users: IUser[] = [
 	{
 		id: 0,
 		email: 'test@test.com',
@@ -17,7 +37,7 @@ const users = [
 		prescriptions: [
 			{
 				infection: 'Viral Fever, Cold',
-                doctorId: 0,
+				doctorId: 0,
 				date: getDate(),
 				medicines: [
 					{
@@ -42,7 +62,7 @@ const users = [
 			},
 			{
 				infection: 'Gastro',
-                doctorId: 1,
+				doctorId: 1,
 				date: getDate(),
 				medicines: [
 					{

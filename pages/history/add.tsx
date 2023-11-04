@@ -1,6 +1,6 @@
 import Layout, { Main, Navbar, Header } from '../../components/layout';
 import { Input } from '../../components/forms';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { SectionTitle, Subtitle } from '../../components/typography';
 import { Button } from '../../components/button';
 import {
@@ -12,13 +12,21 @@ import tw, { styled } from 'twin.macro';
 
 const StyledSectionTitle = tw(SectionTitle)`text-gray-500`;
 const MedicineListing = tw.div`flex flex-wrap col-gap-2 items-center`;
-const Container = styled.div`
+const Container = styled.div<{ listing?: boolean }>`
 	${({ listing }) => listing && tw`rounded py-3`}
 `;
 const MedicineContainer = tw(Container)`flex-2`;
 const DoseContainer = tw(Container)`flex-1 min-w-22`;
+
+interface IMedicine {
+	active: 'morning' | 'evening' | 'afternoon';
+	morning: [];
+	afternoon: [];
+	evening: [];
+}
+
 const AddMedicalHistory = () => {
-	const [medicines, setMedicines] = useState({
+	const [medicines, setMedicines] = useState<IMedicine>({
 		active: 'morning',
 		morning: [],
 		afternoon: [],
@@ -29,7 +37,7 @@ const AddMedicalHistory = () => {
 	const [medicine, setMedicine] = useState('');
 	const [dose, setDose] = useState('');
 
-	const addMedicine = (e) => {
+	const addMedicine = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const { active } = medicines;
 		if (dose.trim() && medicine.trim()) {
@@ -42,7 +50,7 @@ const AddMedicalHistory = () => {
 		}
 	};
 
-	const changeMedicineTime = (e) => {
+	const changeMedicineTime = (e: React.MouseEvent<HTMLButtonElement>) => {
 		setMedicines({
 			...medicines,
 			active: e.target.dataset.time,

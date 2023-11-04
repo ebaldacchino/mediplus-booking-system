@@ -2,15 +2,30 @@ import { BiCalendarAlt } from 'react-icons/bi';
 import Calendar from './calendar';
 import { isAfter, addMonths, format, addDays } from 'date-fns';
 import { ListContainer, ListItem, ListItemButton } from '../list-group';
+import { useRef } from 'react';
 
-const Dates = (props) => {
+interface DatesProps {
+	toggleCalendar: () => void;
+	viewCalendar: boolean;
+	date: Date;
+	setDate: (newDate: Date) => void;
+	today: Date | number;
+}
+
+const Dates = (props: DatesProps) => {
+	const buttonEl = useRef<HTMLButtonElement>(null);
 	const { toggleCalendar, viewCalendar, date, setDate, today } = props;
-	const checkIsDisabled = (n) => isAfter(addDays(date, n), addMonths(today, 3));
-	const handleClick = (n) => setDate(addDays(date, n));
+	const checkIsDisabled = (n: number) => isAfter(addDays(date, n), addMonths(today, 3));
+	const handleClick = (n: number) => {
+		setDate(addDays(date, n));
+		buttonEl.current?.focus();
+	};
 	return (
 		<ListContainer>
 			<ListItem>
-				<ListItemButton blue>{format(date, 'd MMM')}</ListItemButton>
+				<ListItemButton blue ref={buttonEl}>
+					{format(date, 'd MMM')}
+				</ListItemButton>
 			</ListItem>
 			<ListItem>
 				<ListItemButton

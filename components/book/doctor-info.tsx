@@ -9,7 +9,7 @@ const Title = tw.span`text-gray-400 uppercase`;
 const Description = tw.span`pb-4 capitalize`;
 const DoctorInfo = ({ handleClick, rating, title, name, address, price }) => {
 	return (
-		<Modal toggleModal={handleClick} frame end>
+        <Modal toggleModal={handleClick} frame end>
 			<Card {...{ rating, title, name, address }}>
 				<Subtitle>{price}</Subtitle>
 			</Card>
@@ -22,12 +22,12 @@ const DoctorInfo = ({ handleClick, rating, title, name, address, price }) => {
 				<Description>{address}</Description>
 			</InfoContainer>
 			<div tw='flex justify-end'>
-				<Link href='/' passHref>
+				<Link href='/' passHref legacyBehavior>
 					<LinkButton textOnly>Get Directions</LinkButton>
 				</Link>
 			</div>
 		</Modal>
-	);
+    );
 };
 
 export default DoctorInfo;

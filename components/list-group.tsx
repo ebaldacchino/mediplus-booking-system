@@ -1,7 +1,12 @@
 import tw, { styled } from 'twin.macro';
 import { unstyledButton } from './button';
 
-const ListContainer = styled.ul`
+interface ListContainerProps {
+	noBorder?: boolean;
+	column?: boolean;
+}
+
+const ListContainer = styled.ul<ListContainerProps>`
 	${tw`flex`}
 	${(props) =>
 		props.noBorder
@@ -11,7 +16,12 @@ const ListContainer = styled.ul`
 `;
 const ListItem = tw.li`flex flex-1`;
 
-const ListItemButton = styled(unstyledButton)`
+interface ListItemButtonProps {
+	icon?: boolean;
+	blue?: boolean;
+}
+
+const ListItemButton = styled(unstyledButton)<ListItemButtonProps>`
 	${tw`flex justify-center items-center flex-1 font-semibold py-3.5`}
 	${({ icon }) => (icon ? tw`text-2xl` : tw`text-sm`)}
 	${({ blue }) =>

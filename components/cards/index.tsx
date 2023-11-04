@@ -11,7 +11,7 @@ const Card = styled.article`
 `;
  
 const LinkCard = ({ href, children }) => ( 
-	<Link href={href || '/'} passHref>
+	<Link href={href || '/'} passHref legacyBehavior>
 		<LinkContainer className='group'>
 			<Card link>{children}</Card>
 		</LinkContainer>

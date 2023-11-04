@@ -3,38 +3,45 @@ import data from '../constants/doctors';
 import SymptomSection from '../components/home/symptoms';
 import Layout, { Footer, Header, Main, Navbar } from '../components/layout';
 import { SectionTitle, Subtitle } from '../components/typography';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import { getLoginSession } from '../lib/auth';
+import { GetServerSideProps } from 'next';
 
 // export const getStaticProps = async () => {
 // 	return { props: { doctors: data } };
 // };
 
-export const getServerSideProps = async (context) => {
-		try {
-			const session = await getLoginSession(context.req);
-			if (!session) throw Error('Invalid token');
-			// const user = await findUser(session.email);
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	try {
+		const session = await getLoginSession(context.req);
+		if (!session) throw Error('Invalid token');
+		// const user = await findUser(session.email);
 
-			// if (!user) throw Error('User not found');
-			// if (session && user) {
-			// 	res.status(200).json({ ...user, password: null });
-			// }
-		} catch (error) {
-			console.error(error.message);
-			// res.status(500).end('Authentication token is invalid, please log in');
-		}
+		// if (!user) throw Error('User not found');
+		// if (session && user) {
+		// 	res.status(200).json({ ...user, password: null });
+		// }
+	} catch (error) {
+		console.error(error.message);
+		// res.status(500).end('Authentication token is invalid, please log in');
+	}
 	return { props: { doctors: data } };
 };
 
 const Home = ({ doctors }) => {
-	useEffect(async () => {
-		const url = '/api/auth/user';
-		const res = await fetch(url);
-		const data = await res.json();
-		console.log(res);
-		console.log(data);
+	useEffect(() => {
+		async function fetchData() {
+			const url = '/api/auth/user';
+			const res = await fetch(url);
+			const data = await res.json();
+
+			console.log(res);
+			console.log(data);
+		}
+
+		fetchData();
 	}, []);
+
 	return (
 		<Layout>
 			<Navbar location search />

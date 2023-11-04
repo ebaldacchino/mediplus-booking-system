@@ -4,7 +4,7 @@ import runnyNose from '../icons/runny-nose.svg';
 import virus from '../icons/virus.svg';
 import vomit from '../icons/vomit.svg';
 
-const symptoms = [
+const symptoms: { name: string; url: string }[] = [
 	{ name: 'Cough', url: '' },
 	{ name: 'Fever', url: soreThroat },
 	{ name: 'Cold', url: '' },

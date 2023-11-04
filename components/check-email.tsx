@@ -1,7 +1,11 @@
 import Layout, { Main, Navbar } from './layout';
 import { PageTitle, Subtitle } from './typography';
 
-const CheckEmail = ({ resetPassword }) => {
+interface CheckEmailProps {
+	resetPassword: boolean;
+}
+
+const CheckEmail = ({ resetPassword }: CheckEmailProps) => {
 	return (
 		<Layout>
 			<Navbar backLink='/login' />
@@ -16,7 +20,7 @@ const CheckEmail = ({ resetPassword }) => {
 				) : (
 					<Subtitle>Check your email to verify your account</Subtitle>
 				)}
-			</Main> 
+			</Main>
 		</Layout>
 	);
 };

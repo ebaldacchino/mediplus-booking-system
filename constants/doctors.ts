@@ -11,9 +11,9 @@ const possibleTimes = [
 	'15:00',
 	'16:00',
 	'17:00',
-]; 
+];
 const makeSlots = () => {
-	let slots = [];
+	let slots: Date[] = [];
 	for (let i = 0; i < 90; i++) {
 		if (Math.random() < 0.7) {
 			possibleTimes.forEach((time) => {
@@ -27,7 +27,20 @@ const makeSlots = () => {
 	return slots;
 };
 
-const doctors = [
+interface IDoctor {
+	id: number;
+	name: string;
+	title: string;
+	availability: string;
+	distance: string;
+	rating: number;
+	address: string;
+	phone: string;
+	price: string;
+	slots?: string;
+}
+
+const doctors: IDoctor[] = [
 	{
 		id: 0,
 		name: 'Dr. John Doe',

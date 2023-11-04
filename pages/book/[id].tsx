@@ -29,7 +29,7 @@ const BookingPage = (props) => {
 		viewMore,
 	} = data;
 	return (
-		<Layout title={props.name}>
+        <Layout title={props.name}>
 			<Navbar backLink={'/'} />
 			<Header>
 				<Card {...props}>
@@ -38,7 +38,7 @@ const BookingPage = (props) => {
 						<Button secondary onClick={handleViewMore}>
 							View More
 						</Button>
-						<Link href={`tel:${props.phone}`} passHref>
+						<Link href={`tel:${props.phone}`} passHref legacyBehavior>
 							<LinkButton>Call Now</LinkButton>
 						</Link>
 					</ButtonContainer>
@@ -51,7 +51,7 @@ const BookingPage = (props) => {
 				<ConfirmBooking {...{ confirmBooking, setConfirmBooking }} />
 			)}
 		</Layout>
-	);
+    );
 };
 
 export default BookingPage;

@@ -2,11 +2,20 @@ import tw, { styled } from 'twin.macro';
 
 const PageTitle = tw.h1`font-bold text-2xl`;
 const CardTitle = tw.h2`font-bold text-lg`;
-const SectionTitle = styled.h3`
+const SectionTitle = styled.h3<{ gray?: boolean }>`
 	${tw`text-sm uppercase`}
-	${props => props.gray && tw`text-gray-400`}
+	${(props) => props.gray && tw`text-gray-400`}
 `;
-const Subtitle = styled.span`
+
+interface SubtitleProps {
+	inline?: boolean;
+	red?: boolean;
+	green?: boolean;
+	gray?: boolean;
+	blue?: boolean;
+}
+
+const Subtitle = styled.span<SubtitleProps>`
 	${tw`text-base`}
 	${({ inline }) => !inline && tw`block`}
 	${(props) =>
